@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import generics, viewsets
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -43,7 +44,7 @@ class SimulationsAPIView(APIView):
 
         """Calculando os Custos Totais com Perdas"""
         request.data['fraldaCustoTotalComPerdas'] = round(request.data['fraldaCustoTotalSemPerdas']
-                                                          * (1 + diaper.percentPerdas / 100))
+                                                          * (1 + diaper.percentPerdas / 100), 4)
 
         """Calculando o Custo do Pacote"""
         request.data['fraldaCustoPacote'] = round((request.data['fraldaCustoTotalComPerdas'] * diaper.qtdPorPacote) +
@@ -70,3 +71,7 @@ class SimulationsAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class SimulationAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Simulation
+    serializer_class = SimulationSerializer
