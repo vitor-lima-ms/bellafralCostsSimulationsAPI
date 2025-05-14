@@ -19,37 +19,37 @@ tamanho_choices = [
 ]
 
 class Diaper(models.Model):
-    modelo = models.CharField(verbose_name='Modelo', max_length=100, choices=modelo_choices)
-    identificador = models.CharField(verbose_name='Identificador', max_length=100)
-    tamanho = models.CharField(verbose_name='Tamanho', max_length=100, choices=tamanho_choices)
+    modelo = models.CharField(verbose_name='Modelo', max_length=100, choices=modelo_choices, blank=True, null=True, default='ABS BELLAFRAL CONFORT')
+    identificador = models.CharField(verbose_name='Identificador', max_length=100, blank=True, null=True)
+    tamanho = models.CharField(verbose_name='Tamanho', max_length=100, choices=tamanho_choices, blank=True, null=True)
 
-    qtdCeluloseVirgem = models.DecimalField(verbose_name='Celulose virgem (Kg)', max_digits=10, decimal_places=4)
-    qtdGel = models.DecimalField(verbose_name='Gel (Kg)', max_digits=10, decimal_places=4)
-    qtdTnt162 = models.DecimalField(verbose_name='TNT 162 (m2)', max_digits=10, decimal_places=4, default=0)
-    qtdTnt750 = models.DecimalField(verbose_name='TNT 750 (m2)', max_digits=10, decimal_places=4)
-    qtdTnt780 = models.DecimalField(verbose_name='TNT 780 (m2)', max_digits=10, decimal_places=4)
-    qtdFitaAdesiva = models.DecimalField(verbose_name='Fita adesiva (m)', max_digits=10, decimal_places=4)
-    qtdElastico = models.DecimalField(verbose_name='Elastico (Kg)', max_digits=10, decimal_places=4)
-    qtdBarreira = models.DecimalField(verbose_name='Barreira (m2)', max_digits=10, decimal_places=4)
+    qtdCeluloseVirgem = models.DecimalField(verbose_name='Celulose virgem (Kg)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdGel = models.DecimalField(verbose_name='Gel (Kg)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdTnt162 = models.DecimalField(verbose_name='TNT 162 (m2)', max_digits=10, decimal_places=4, blank=True, null=True, default=0)
+    qtdTnt750 = models.DecimalField(verbose_name='TNT 750 (m2)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdTnt780 = models.DecimalField(verbose_name='TNT 780 (m2)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdFitaAdesiva = models.DecimalField(verbose_name='Fita adesiva (m)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdElastico = models.DecimalField(verbose_name='Elastico (Kg)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdBarreira = models.DecimalField(verbose_name='Barreira (m2)', max_digits=10, decimal_places=4, blank=True, null=True)
     qtdPolietileno162 = models.DecimalField(verbose_name='Polietileno 162 (Kg)', max_digits=10, decimal_places=4,
-                                            default=0)
+                                            default=0, blank=True, null=True)
     qtdPolietileno750 = models.DecimalField(verbose_name='Polietileno 750 (Kg)', max_digits=10, decimal_places=4,
-                                            default=0)
-    qtdPolietileno780 = models.DecimalField(verbose_name='Polietileno 780 (Kg)', max_digits=10, decimal_places=4)
-    qtdHotMelt = models.DecimalField(verbose_name='Hot-Melt (Kg)', max_digits=10, decimal_places=4)
-    qtdPorPacote = models.IntegerField(verbose_name='Quantidade de fraldas por pacote')
+                                            default=0, blank=True, null=True)
+    qtdPolietileno780 = models.DecimalField(verbose_name='Polietileno 780 (Kg)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdHotMelt = models.DecimalField(verbose_name='Hot-Melt (Kg)', max_digits=10, decimal_places=4, blank=True, null=True)
+    qtdPorPacote = models.IntegerField(verbose_name='Quantidade de fraldas por pacote', blank=True, null=True)
 
-    percentPerdas = models.DecimalField(verbose_name='Perdas (%)', max_digits=10, decimal_places=4)
+    percentPerdas = models.DecimalField(verbose_name='Perdas (%)', max_digits=10, decimal_places=4, blank=True, null=True)
 
-    precoEmbalagem = models.DecimalField(verbose_name='Embalagem (R$)', max_digits=10, decimal_places=4)
+    precoEmbalagem = models.DecimalField(verbose_name='Embalagem (R$)', max_digits=10, decimal_places=4, blank=True, null=True)
     precoFardoEncarte = models.DecimalField(verbose_name='Saco para fardos/Encarte (R$)', max_digits=10,
-                                            decimal_places=4)
+                                            decimal_places=4, blank=True, null=True)
 
-    percentComissao = models.DecimalField(verbose_name='Comissão (%)', max_digits=10, decimal_places=4)
-    percentImpostos = models.DecimalField(verbose_name='Impostos (%)', max_digits=10, decimal_places=4)
-    percentFrete = models.DecimalField(verbose_name='Frete (%)', max_digits=10, decimal_places=4)
-    percentMargem = models.DecimalField(verbose_name='Margem de contribuição (%)', max_digits=10, decimal_places=4)
-    percentST = models.DecimalField(verbose_name='ST (%)', max_digits=10, decimal_places=4)
+    percentComissao = models.DecimalField(verbose_name='Comissão (%)', max_digits=10, decimal_places=4, blank=True, null=True)
+    percentImpostos = models.DecimalField(verbose_name='Impostos (%)', max_digits=10, decimal_places=4, blank=True, null=True)
+    percentFrete = models.DecimalField(verbose_name='Frete (%)', max_digits=10, decimal_places=4, blank=True, null=True)
+    percentMargem = models.DecimalField(verbose_name='Margem de contribuição (%)', max_digits=10, decimal_places=4, blank=True, null=True)
+    percentST = models.DecimalField(verbose_name='ST (%)', max_digits=10, decimal_places=4, blank=True, null=True)
 
     def __str__(self):
         return f'{self.modelo} {self.identificador} ({self.tamanho})'
