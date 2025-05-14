@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import APPEND_SLASH
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,8 @@ SECRET_KEY = 'django-insecure-oo@nt7ac+achr8o*^z@vw*66-7h6)ncal%9a=%y$*00pziu691
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+APPEND_SLASH = False
 
 
 # Application definition
@@ -147,10 +151,10 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
     ],
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/minute', #second, day, month, year
-        'user': '10/minute'
-    }
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'anon': '100000/second', #second, day, month, year
+    #     'user': '10/minute'
+    # }
 }
 
 # 786883c88d952372a3a4546f6497336f913beef8 --> Token para minha autenticação
